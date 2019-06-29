@@ -1,0 +1,38 @@
+{
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "dev": "grunt dev",
+    "serve": "npm run build && firebase serve --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "logs": "firebase functions:log",
+    "test": "grunt test",
+    "e2e": "grunt e2e"
+  },
+  "main": "lib/src/index.js",
+  "dependencies": {
+    "firebase-admin": "^8.2.0",
+    "firebase-functions": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.3.13",
+    "firebase-functions-test": "^0.1.6",
+    "grunt": "^1.0.4",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-exec": "^3.0.0",
+    "jasmine": "^3.4.0",
+    "jasmine-terminal-reporter": "^1.0.3",
+    "mocha": "^6.1.4",
+    "sinon": "^7.3.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.2",
+    "yargs": "^13.2.4"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "private": true
+}

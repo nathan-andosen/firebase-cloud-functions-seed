@@ -1,0 +1,37 @@
+{
+  "name": "firebase-cloud-functions-seed",
+  "version": "1.0.0",
+  "description": "A repo to kickstart your next typescript cloud functions Firebase project.",
+  "main": "index.js",
+  "scripts": {
+    "init": "bash ./scripts/init.sh",
+    "deploy": "bash ./scripts/deploy.sh",
+    "deploy-staging": "bash ./scripts/deploy-staging.sh",
+    "deploy-prod": "bash ./scripts/deploy-prod.sh",
+    "dev": "bash ./scripts/dev.sh",
+    "build": "bash ./scripts/build.sh",
+    "test": "bash ./scripts/test.sh",
+    "e2e": "bash ./scripts/e2e.sh",
+    "chat-test": "bash ./scripts/chat-test.sh",
+    "switch-to-dev": "bash ./scripts/switch-to-dev.sh",
+    "switch-to-staging": "bash ./scripts/switch-to-staging.sh",
+    "switch-to-prod": "bash ./scripts/switch-to-prod.sh",
+    "deploy-and-e2e": "bash ./scripts/deploy.sh && bash ./scripts/e2e.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathan-andosen/firebase-cloud-functions-seed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nathan-andosen/firebase-cloud-functions-seed/issues"
+  },
+  "author": "Nathan Anderson",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/andosen/briscola-dev-cloud-functions#readme",
+  "devDependencies": {
+    "firebase-tools": "^7.0.2"
+  },
+  "dependencies": {
+    "@thenja/event-emitter": "^2.0.0"
+  }
+}
