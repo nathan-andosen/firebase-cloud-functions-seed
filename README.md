@@ -94,7 +94,7 @@ exports.testData = {
 
 # Deployments
 
-## Dev
+### Dev
 
 1. Run the build and unit tests first: ``npm run build``
 
@@ -102,13 +102,13 @@ exports.testData = {
 
 1. Now you can run integration tests against Firebase: ``npm run e2e``
 
-## Staging
+### Staging
 
 1. Run the build and unit tests first: ``npm run build``
 
 1. Deploy to Firebase: ``npm run deploy-staging``
 
-## Production
+### Production
 
 1. First deploy to dev env and make sure all unit & e2e tests pass
 
@@ -130,7 +130,7 @@ exports.testData = {
 
 # Helpful Information
 
-## Environment
+### Environment
 
 The app knows which environment its running in by the config option:
 
@@ -147,7 +147,7 @@ __Environments available:__
 
 Authentication is only active in prod environment. In dev or test environment, you should set the request header X-Uid to your user uid (this is a way to fake a uid that would be in an auth token).
 
-## Testing
+### Testing
 
 _Some cloud functions are only created for dev / debugging purposes, so they only have unit tests, and maybe some basic integration tests._
 
@@ -204,3 +204,7 @@ export const searchUser = functions.https.onRequest((req, res) => {
   return new SearchUser().execute(req, res);
 });
 ```
+
+# License
+
+MIT
