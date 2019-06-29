@@ -31,7 +31,5 @@
   "devDependencies": {
     "firebase-tools": "^7.0.2"
   },
-  "dependencies": {
-    "@thenja/event-emitter": "^2.0.0"
-  }
+  "dependencies": {}
 }
