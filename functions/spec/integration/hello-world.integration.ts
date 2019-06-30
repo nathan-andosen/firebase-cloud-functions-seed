@@ -10,23 +10,23 @@ const mockReq = new MockRequest();
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
 
 describe('Hello World', () => {
-  const before = function(resolve) {
-    // only need to delete all collections in the first integration test
+  beforeAll((done) => {
+    firestoreHelper.initializeApp();
     firestoreHelper.deleteAllCollections()
     .then(() => {
-      resolve();
+      done();
     })
     .catch((err) => {
       throw err;
     });
-  };
-
-  beforeAll((done) => {
-    // before all integration tests, we delete all collections
-    new Promise(before).then((() => {
-      done();
-    })).catch((err) => { throw err; });
   }, 30000);
+
+  afterAll((done) => {
+    firestoreHelper.deleteApp()
+    .then(() => {
+      done();
+    }).catch((err) => { throw err; });
+  });
 
   it('spec 1: should write to database and return success message', (done) => {
     spyOn(mockRes, 'send').and.callFake((responseData) => {

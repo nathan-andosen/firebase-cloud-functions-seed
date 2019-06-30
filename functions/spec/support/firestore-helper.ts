@@ -12,10 +12,41 @@ export class FirestoreHelper {
   private appendToCollectionPath: string = '-e2e';
 
 
+  /**
+   * Creates an instance of FirestoreHelper.
+   * 
+   * @memberof FirestoreHelper
+   */
   constructor() {
+    this.initializeApp();
+  }
+
+
+  /**
+   * Initialise the firebase app
+   *
+   * @memberof FirestoreHelper
+   */
+  initializeApp() {
     if(admin.apps.length === 0) {
       admin.initializeApp(functions.config().firebase);
     }
+  }
+
+
+  /**
+   * We must delete the app as the initializeApp() function starts
+   * background tasks, which will keep the node process alive, which wont
+   * close the tests.
+   *
+   * @returns {Promise<any>}
+   * @memberof FirestoreHelper
+   */
+  deleteApp(): Promise<any> {
+    if (admin.apps.length > 0) {
+      return admin.apps[0].delete();
+    }
+    return Promise.resolve();
   }
 
   enableE2eForCollections() {
@@ -26,6 +57,14 @@ export class FirestoreHelper {
     this.appendToCollectionPath = '';
   }
 
+  /**
+   * Get the collection path. You should use this always, as e2e tests use
+   * different collections
+   *
+   * @param {string} collection
+   * @returns
+   * @memberof FirestoreHelper
+   */
   getCollectionPath(collection: string) {
     return collection + this.appendToCollectionPath;
   }

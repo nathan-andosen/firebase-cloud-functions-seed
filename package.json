@@ -6,6 +6,7 @@
   "scripts": {
     "init": "bash ./scripts/init.sh",
     "deploy": "bash ./scripts/deploy.sh",
+    "deploy-and-e2e": "bash ./scripts/deploy-and-e2e.sh",
     "deploy-staging": "bash ./scripts/deploy-staging.sh",
     "deploy-prod": "bash ./scripts/deploy-prod.sh",
     "dev": "bash ./scripts/dev.sh",
@@ -15,8 +16,7 @@
     "chat-test": "bash ./scripts/chat-test.sh",
     "switch-to-dev": "bash ./scripts/switch-to-dev.sh",
     "switch-to-staging": "bash ./scripts/switch-to-staging.sh",
-    "switch-to-prod": "bash ./scripts/switch-to-prod.sh",
-    "deploy-and-e2e": "bash ./scripts/deploy.sh && bash ./scripts/e2e.sh"
+    "switch-to-prod": "bash ./scripts/switch-to-prod.sh"
   },
   "repository": {
     "type": "git",

@@ -20,5 +20,5 @@ const funcName = process.env.FUNCTION_NAME;
 const helloWorldFunc = 'helloWorld';
 if (!funcName || funcName === helloWorldFunc) {
   exports[helloWorldFunc] 
-    = require('./functions/hello-world/hello-world')[helloWorldFunc];
+    = require('./functions/hello-world/hello-world.function')[helloWorldFunc];
 }
