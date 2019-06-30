@@ -3,7 +3,7 @@ import {
 } from '../../../src/services/api-response.service';
 import * as DI from '../../../src/services/dependency-injection.service';
 import { Err } from '../../../src/models/err.model';
-import { MockResponse } from '../mocks/response.mock';
+import { MockResponse } from '../../mocks';
 
 // MOCKS //////////////
 

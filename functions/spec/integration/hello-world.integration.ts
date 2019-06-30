@@ -1,7 +1,6 @@
 import * as myFunctions from '../../src/index';
 import { firestoreHelper } from '../support/firestore-helper';
-import { MockResponse } from '../unit/mocks/response.mock';
-import { MockRequest } from '../unit/mocks/request.mock';
+import { MockRequest, MockResponse } from '../mocks';
 import { DB_COLLECTIONS } from '../../src/constants';
 
 

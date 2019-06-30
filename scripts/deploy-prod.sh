@@ -5,3 +5,5 @@
 # We do it this way to prevent an accidental deployment to production
 
 ./node_modules/.bin/firebase deploy --only functions
+
+npm run switch-to-dev
