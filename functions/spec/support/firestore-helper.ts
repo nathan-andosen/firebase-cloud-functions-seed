@@ -1,5 +1,6 @@
 import { DB_COLLECTIONS } from '../../src/constants';
 import * as admin from 'firebase-admin';
+import * as functions from 'firebase-functions';
 
 /**
  * Helper service for the firestore database
@@ -10,12 +11,23 @@ import * as admin from 'firebase-admin';
 export class FirestoreHelper {
   private appendToCollectionPath: string = '-e2e';
 
+
+  constructor() {
+    if(admin.apps.length === 0) {
+      admin.initializeApp(functions.config().firebase);
+    }
+  }
+
   enableE2eForCollections() {
     this.appendToCollectionPath = '-e2e';
   }
 
   disabledE2eForCollections() {
     this.appendToCollectionPath = '';
+  }
+
+  getCollectionPath(collection: string) {
+    return collection + this.appendToCollectionPath;
   }
 
 
@@ -30,34 +42,35 @@ export class FirestoreHelper {
    */
   updateDocInDatabase(collection: string, uid: string, updateObj: any)
   : Promise<any> {
-    const collectionPath = collection + this.appendToCollectionPath;
+    const collectionPath = this.getCollectionPath(collection);
     const db = admin.firestore();
     const docRef = db.collection(collectionPath).doc(uid);
     return docRef.update(updateObj);
   }
 
 
-  // /**
-  //  * Insert a document into the database
-  //  *
-  //  * @param {string} collection
-  //  * @param {string} uid
-  //  * @param {*} data
-  //  * @returns {Promise<boolean>}
-  //  * @memberof FirestoreHelper
-  //  */
-  // insertDocIntoDatabase(collection: string, uid: string, data: any)
-  // : Promise<boolean> {
-  //   const db = admin.firestore();
-  //   const docRef = db.collection(collection).doc(uid);
-  //   return docRef.set(data)
-  //   .then(() => {
-  //     return Promise.resolve(true);
-  //   })
-  //   .catch((err) => {
-  //     return Promise.reject(err);
-  //   });
-  // }
+  /**
+   * Insert a document into the database
+   *
+   * @param {string} collection
+   * @param {string} uid
+   * @param {*} data
+   * @returns {Promise<boolean>}
+   * @memberof FirestoreHelper
+   */
+  insertDocIntoDatabase(collection: string, uid: string, data: any)
+  : Promise<boolean> {
+    const collectionPath = this.getCollectionPath(collection);
+    const db = admin.firestore();
+    const docRef = db.collection(collectionPath).doc(uid);
+    return docRef.set(data)
+    .then(() => {
+      return Promise.resolve(true);
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
+  }
 
 
   /**
@@ -68,7 +81,7 @@ export class FirestoreHelper {
    * @memberof FirestoreHelper
    */
   getCollectionRef(collection: string) {
-    const collectionPath = collection + this.appendToCollectionPath;
+    const collectionPath = this.getCollectionPath(collection);
     const db = admin.firestore();
     const colRef = db.collection(collectionPath);
     return colRef;
@@ -95,7 +108,7 @@ export class FirestoreHelper {
    * @memberof FirestoreHelper
    */
   getDoc(collection: string, uid: string): Promise<any> {
-    const collectionPath = collection + this.appendToCollectionPath;
+    const collectionPath = this.getCollectionPath(collection);
     const db = admin.firestore();
     const docRef = db.collection(collectionPath).doc(uid);
     return docRef.get().then((doc) => {
@@ -113,16 +126,16 @@ export class FirestoreHelper {
    * @returns {Promise<boolean>}
    * @memberof FirestoreHelper
    */
-  deleteAllCollections(cb: (err?: Error) => void): void {
-    const collections: string[] = [];
-    for(const key in DB_COLLECTIONS) {
-      collections.push(DB_COLLECTIONS[key] + this.appendToCollectionPath);
-    }
-    this.iterateCollectionsToDelete(0, collections, (err: Error) => {
-      if(err){
-        cb(err); return;
+  deleteAllCollections(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const collections: string[] = [];
+      for(const key in DB_COLLECTIONS) {
+        collections.push(this.getCollectionPath(DB_COLLECTIONS[key]));
       }
-      cb();
+      this.iterateCollectionsToDelete(0, collections, (err: Error) => {
+        if(err){ reject(err); return; }
+        setTimeout(() => { resolve(); }, 1000);
+      });
     });
   }
 

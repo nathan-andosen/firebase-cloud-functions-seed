@@ -13,14 +13,12 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
 describe('Hello World', () => {
   const before = function(resolve) {
     // only need to delete all collections in the first integration test
-    firestoreHelper.deleteAllCollections(function(err: Error) {
-      if(err) {
-        console.log('Hello world beforeAll error thrown...');
-        throw err;
-      }
-      setTimeout(function() {
-        resolve();
-      }, 1000);
+    firestoreHelper.deleteAllCollections()
+    .then(() => {
+      resolve();
+    })
+    .catch((err) => {
+      throw err;
     });
   };
 
