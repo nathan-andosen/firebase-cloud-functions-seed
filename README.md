@@ -114,7 +114,7 @@ exports.testData = {
 
 1. Now deploy to staging env and test your app
 
-1. Now oyu can deploy to production: First switch to prod: ``npm run switch-to-prod``
+1. Now you can deploy to production: First switch to prod: ``npm run switch-to-prod``
 
 1. Deploy to Firebase: ``npm run deploy-prod``
 
@@ -125,6 +125,8 @@ exports.testData = {
 ``npm run test`` - Run the unit tests
 
 ``npm run e2e`` - Run the end 2 end (integration) tests. __Important:__ Integration tests connect to firebase, they run in online mode.
+
+``npm run deploy-and-e2e`` - Deploy to dev env and run e2e tests.
 
 ``npm run build`` - Will build the cloud functions: compile typescript, run the unit tests.
 

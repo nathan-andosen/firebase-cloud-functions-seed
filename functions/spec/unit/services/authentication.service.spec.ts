@@ -40,7 +40,7 @@ describe('AuthenticateService', () => {
    */
   describe('authenticate()', () => {
     it('should get uid from header when not in prod env', (done) => {
-      spyOn(functions, 'config').and.callFake(() => {
+      spyOn(<any>functions, 'config').and.callFake(() => {
         return { running: { env: 'dev' }};
       });
       const authSrv = new AuthenticateService();
@@ -52,7 +52,7 @@ describe('AuthenticateService', () => {
     });
 
     it('should return unauthorized as auth header not set', (done) => {
-      spyOn(functions, 'config').and.callFake(() => {
+      spyOn(<any>functions, 'config').and.callFake(() => {
         return { running: { env: 'prod' }};
       });
       const authSrv = new AuthenticateService();
@@ -67,7 +67,7 @@ describe('AuthenticateService', () => {
     });
 
     it('should return unauthorized as token is invalid', (done) => {
-      spyOn(functions, 'config').and.callFake(() => {
+      spyOn(<any>functions, 'config').and.callFake(() => {
         return { running: { env: 'prod' }};
       });
       spyOn(requestMock, 'get').and.callFake(() => {
@@ -88,7 +88,7 @@ describe('AuthenticateService', () => {
     });
 
     it('should return decoded token as its valid', (done) => {
-      spyOn(functions, 'config').and.callFake(() => {
+      spyOn(<any>functions, 'config').and.callFake(() => {
         return { running: { env: 'prod' }};
       });
       spyOn(requestMock, 'get').and.callFake(() => {
