@@ -6,7 +6,7 @@ A repo to kickstart your next typescript cloud functions Firebase project. This 
 
 * __Typescript__ - typed superset of JavaScript
 * __Automation__ - automated tasks to build, deploy and run tests via GruntJs
-* __Unit & Integration tests__ - These tests are setup and ready to go, some example tests for a helping start.
+* __Unit & e2e tests__ - These tests are setup and ready to go, some example tests for a helping start.
 * __Single function execution__ - Only load the function that is being executed, speeds up cold starts.
 * __Zero dependencies__ - No loading of third party libraries, great for performance
   * There are helper classes and services provided in the seed app that you will probably use in every project. These include: _Authentication service_, _Dependency injection service_, _CORS service_ and more. 

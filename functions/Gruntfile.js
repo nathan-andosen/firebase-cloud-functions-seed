@@ -17,7 +17,7 @@ module.exports = function(grunt) {
       cmd: "node ./spec/start-tests.js"
     },
     e2eTests: {
-      cmd: "node ./spec/start-integration-tests.js"
+      cmd: "node ./spec/start-e2e-tests.js"
     },
     lint: {
       cmd: "npm run lint"

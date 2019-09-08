@@ -1,7 +1,7 @@
 var Jasmine = require('jasmine');
 var Reporter = require('jasmine-terminal-reporter');
 var path = require('path');
-var projectData = require('../../project-data/integration-test-data.js');
+var projectData = require('../../project-data/e2e-test-data.js');
 var keyPath = path.join(__dirname, '../', '../', 'project-data', 
   'service-account-key.json');
 
@@ -20,7 +20,7 @@ var jasmine = new Jasmine();
 
 process.env.NODE_ENV = 'tests';
 
-jasmine.loadConfigFile('./spec/integration/jasmine.json');
+jasmine.loadConfigFile('./spec/e2e/jasmine.json');
 jasmine.onComplete(function(passed) {
   if(passed) {
     console.log('All specs have passed');
@@ -39,5 +39,5 @@ var reporter = new Reporter({
 jasmine.addReporter(reporter);
 // }
 
-console.log('Starting integration tests...');
+console.log('Starting e2e tests...');
 jasmine.execute();
